@@ -1,6 +1,6 @@
-export interface Investigation { id: string; case_id: string; target: string; status: string; confidence: number; evidence_count?: number; updated_at: string }
-export interface Actor { id: string; investigation_id: string; name: string; aliases?: string[]; confidence?: number; first_observed?: string; last_observed?: string }
-export interface Evidence { id: string; investigation_id: string; source: string; type: string; collected_at: string; sha256: string; confidence: number; integrity: 'VERIFIED' | 'UNVERIFIED' | 'FLAGGED' }
-export interface Signal { id: string; investigation_id: string; label: string; category: string; confidence: number; polarity?: 'supporting' | 'contradictory' }
-export interface Relationship { id: string; investigation_id: string; source: string; target: string; label: string; confidence: number }
-export interface TimelineEvent { id: string; investigation_id: string; event_at: string; title: string; detail?: string; evidence_id?: string }
+export interface Investigation { id:string; case_id:string; target:string; investigation_type:string; last_activity?:string; evidence_count:number; confidence:number; status:string; priority:string; description?:string; is_demo:boolean; created_at:string; updated_at:string }
+export interface Actor { id:string; investigation_id:string; name:string; actor_type:string; confidence?:number; first_observed?:string; last_observed?:string; status:string; is_demo:boolean }
+export interface Evidence { id:string; evidence_id:string; investigation_id:string; source:string; evidence_type:string; observed_at?:string; sha256?:string; confidence:number; integrity_status:'VERIFIED'|'UNVERIFIED'|'FLAGGED'; title?:string; content?:string; collected_at?:string }
+export interface Signal { id:string; investigation_id:string; engine:string; signal_type:string; description:string; weight?:number; supports:boolean; confidence:number; evidence_id?:string }
+export interface Relationship { id:string; investigation_id:string; source_entity:string; source_type?:string; target_entity:string; target_type?:string; relationship_type:string; confidence:number; evidence_id?:string }
+export interface TimelineEvent { id:string; investigation_id:string; event_at:string; event_type:string; title:string; description?:string; confidence?:number; evidence_id?:string }
